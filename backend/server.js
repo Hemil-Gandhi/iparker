@@ -31,12 +31,12 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("✅ MongoDB Connected Successfully"))
-  .catch((err) => console.error("❌ MongoDB Connection Error:", err));
+  .then(() => console.log("MongoDB Connected Successfully"))
+  .catch((err) => console.error("MongoDB Connection Error:", err));
 
 app.delete("/api/bookings/:id", async (req, res) => {
   try {
-    const bookingId = req.params.id; // capture booking ID from URL
+    const bookingId = req.params.id; 
     console.log("Deleting booking with ID:", bookingId);
 
     const deletedBooking = await Booking.findByIdAndDelete(bookingId);
@@ -52,4 +52,4 @@ app.delete("/api/bookings/:id", async (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
