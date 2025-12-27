@@ -94,18 +94,13 @@ app.use("/api/reports", reportRoutes);
 /* ----------------------------------
    DATABASE CONNECTION
 ---------------------------------- */
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ MongoDB Connected Successfully"))
-  .catch((err) => console.error("❌ MongoDB Connection Error:", err));
+mongoose;
 
 /* ----------------------------------
    DELETE BOOKING (EXTRA API)
 ---------------------------------- */
 app.delete("/api/bookings/:id", async (req, res) => {
   try {
-    const bookingId = req.params.id;
-
     const deletedBooking = await Booking.findByIdAndDelete(bookingId);
     if (!deletedBooking) {
       return res.status(404).json({ message: "Booking not found" });
@@ -140,4 +135,4 @@ app.use((req, res) => {
    SERVER START
 ---------------------------------- */
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
