@@ -1,0 +1,90 @@
+.card-header {
+  background: linear-gradient(135deg, #007bff, #6610f2);
+  letter-spacing: 0.5px;
+  border-bottom: none;
+}
+
+.slot-card {
+  height: 130px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  color: #fff;
+  text-transform: capitalize;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.available-slot {
+  background: linear-gradient(145deg, #2ecc71, #27ae60);
+}
+
+.available-slot::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15), transparent 70%);
+  transform: rotate(45deg);
+  transition: opacity 0.4s ease;
+  opacity: 0;
+}
+
+.available-slot:hover::before {
+  opacity: 1;
+}
+
+.booked-slot {
+  background: linear-gradient(145deg, #e74c3c, #c0392b);
+}
+
+.booked-slot::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15), transparent 70%);
+  transform: rotate(45deg);
+  transition: opacity 0.4s ease;
+  opacity: 0;
+}
+
+.booked-slot:hover::before {
+  opacity: 1;
+}
+
+.slot-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+}
+
+.slot-card h5 {
+  font-size: 1.2rem;
+  letter-spacing: 0.3px;
+}
+
+.slot-card p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+@media (max-width: 576px) {
+  .slot-card {
+    height: 110px;
+  }
+  .slot-card h5 {
+    font-size: 1rem;
+  }
+}
+
+body {
+  background: #f4f7fb;
+}
+
+.card-body {
+  background: #f9fafc !important;
+}

@@ -1,0 +1,67 @@
+.container {
+  max-width: 1000px;
+}
+
+.card {
+  border-radius: 15px;
+}
+
+label {
+  font-size: 15px;
+  color: #333;
+}
+
+form .form-control,
+form .form-select {
+  border-radius: 8px;
+  box-shadow: none;
+  transition: 0.2s ease-in-out;
+}
+
+form .form-control:focus,
+form .form-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+}
+
+.table th {
+  font-weight: 600;
+}
+.toast-snackbar {
+  background: #28a745 !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+  padding: 10px 16px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  animation: fadeIn 0.4s ease-out !important;
+}
+
+.toast-error {
+  background: #dc3545 !important;
+  color: white !important;
+}
+
+.toast-position-top-right {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  left: auto !important;
+  bottom: auto !important;
+}
+
+/* Fade-in toast animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

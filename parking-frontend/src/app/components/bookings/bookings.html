@@ -1,0 +1,120 @@
+<div class="container mt-4">
+  <h3 class="mb-3 text-center">Parking Slot Booking</h3>
+
+  <form (ngSubmit)="onSubmit()" class="card p-3 shadow-sm">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label for="vehicle" class="form-label">Select Vehicle</label>
+        <select [(ngModel)]="bookingData.vehicle" class="form-select" name="vehicle">
+          <option value="" disabled selected>Select Vehicle</option>
+          <option *ngFor="let v of availableVehicles" [value]="v._id">
+            {{ v.vehicleNumber }} - {{ v.ownerName }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label for="slot" class="form-label">Select Slot</label>
+        <select id="slot" class="form-select" [(ngModel)]="bookingData.slot" name="slot" required>
+          <option value="" disabled selected>Select Slot</option>
+          <option *ngFor="let s of availableSlots" [value]="s._id">
+            {{ s.slotNumber }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label for="inTime" class="form-label">Entry Time</label>
+        <input
+          type="datetime-local"
+          id="inTime"
+          class="form-control"
+          [(ngModel)]="bookingData.inTime"
+          name="inTime"
+          required
+          [min]="minDateTime"
+          (change)="calculateDurationAndCharges()"
+        />
+      </div>
+
+      <div class="col-md-6">
+        <label for="outTime" class="form-label">Exit Time</label>
+        <input
+          type="datetime-local"
+          id="outTime"
+          class="form-control"
+          [(ngModel)]="bookingData.outTime"
+          name="outTime"
+          required
+          [min]="bookingData.inTime || minDateTime"
+          (change)="calculateDurationAndCharges()"
+        />
+      </div>
+
+      <div *ngIf="timeError" class="text-danger text-center mt-2">
+        <small>{{ timeError }}</small>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Duration</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="bookingData.duration"
+          name="duration"
+          readonly
+        />
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Charges (₹)</label>
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="bookingData.charges"
+          name="charges"
+          readonly
+        />
+      </div>
+
+      <div class="col-12 text-center mt-3">
+        <button class="btn btn-primary px-5" type="submit">Book Slot</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="mt-5">
+    <h4 class="text-center mb-3">Current Bookings</h4>
+    <table class="table table-bordered table-striped text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>Vehicle Number</th>
+          <th>Owner</th>
+          <th>Slot</th>
+          <th>Entry</th>
+          <th>Exit</th>
+          <th>Duration</th>
+          <th>Charges (₹)</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let b of bookings">
+          <td>{{ b.vehicleNumber }}</td>
+          <td>{{ b.ownerName }}</td>
+          <td>{{ b.slotNumber }}</td>
+          <td>{{ b.entryTime | date : 'short' }}</td>
+          <td>{{ b.exitTime | date : 'short' }}</td>
+          <td>{{ b.duration }}</td>
+          <td>{{ b.charges }}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="deleteBooking(b._id)">Delete</button>
+          </td>
+        </tr>
+        <tr *ngIf="bookings.length === 0">
+          <td colspan="8" class="text-muted">No active bookings</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

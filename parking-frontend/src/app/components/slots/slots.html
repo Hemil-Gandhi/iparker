@@ -1,0 +1,18 @@
+<div class="container mt-4">
+  <div class="card shadow border-0">
+    <div class="card-header bg-dark text-white fw-bold text-center">Parking Slot Status</div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-3 mb-3" *ngFor="let slot of slots">
+          <div
+            class="card text-center p-3 shadow-sm"
+            [ngClass]="slot.status === 'Booked' ? 'bg-danger text-white' : 'bg-success text-white'"
+          >
+            <h5>Slot {{ slot.slotNumber }}</h5>
+            <p>Status: {{ slot.status }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
